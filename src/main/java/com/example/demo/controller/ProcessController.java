@@ -28,8 +28,8 @@ public class ProcessController {
 
     @ResponseBody
     @RequestMapping("/list")
-    public List<DeploymentEntityImpl> list(){
+    public String list(){
 //        return repositoryService.createDeploymentQuery().list().size();
-        return processService.list();
+        return processService.list().toString();
     }
 }

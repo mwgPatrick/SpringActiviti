@@ -4,6 +4,8 @@ import com.example.demo.service.ProcessService;
 import com.example.demo.util.ActivitiUtils;
 import org.activiti.engine.impl.persistence.entity.DeploymentEntityImpl;
 import org.activiti.engine.repository.Deployment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.List;
  */
 @Service
 public class ProcessServiceImpl implements ProcessService {
+    private Logger logger = LoggerFactory.getLogger(ProcessService.class);
     @Override
     public List<DeploymentEntityImpl> list(){
         List<Deployment> deployments = ActivitiUtils.repositoryService.createDeploymentQuery().list();
@@ -29,6 +32,8 @@ public class ProcessServiceImpl implements ProcessService {
 
     private DeploymentEntityImpl deploymentToEntity(Deployment d){
         DeploymentEntityImpl deployment = new DeploymentEntityImpl();
+        logger.info(d.getName());
+        System.out.println(d.getName());
         deployment.setName(d.getName());
         deployment.setCategory(d.getCategory());
         deployment.setId(d.getId());
