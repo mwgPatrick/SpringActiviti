@@ -1,12 +1,17 @@
 package com.example.demo.controller;
 
+import com.example.demo.service.ProcessService;
 import com.example.demo.util.ActivitiUtils;
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RepositoryService;
+import org.activiti.engine.impl.persistence.entity.DeploymentEntityImpl;
+import org.activiti.engine.repository.Deployment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
  * ProcessController
@@ -19,13 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ProcessController {
 
     @Autowired
-    private ProcessEngine processEngine;
-    @Autowired
-    private RepositoryService repositoryService;
+    private ProcessService processService;
 
     @ResponseBody
     @RequestMapping("/list")
-    public int list(){
-        return repositoryService.createDeploymentQuery().list().size();
+    public List<DeploymentEntityImpl> list(){
+//        return repositoryService.createDeploymentQuery().list().size();
+        return processService.list();
     }
 }

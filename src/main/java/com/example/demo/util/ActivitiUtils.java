@@ -2,6 +2,7 @@ package com.example.demo.util;
 
 import org.activiti.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * ActivitiUtils
@@ -9,31 +10,42 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author mawengang
  * @date 2019/12/10 10:02
  */
+@Component
 public class ActivitiUtils {
+    public static ProcessEngine processEngine;
+    public static RepositoryService repositoryService;
+    public static TaskService taskService;
+    public static IdentityService identityService;
+    public static HistoryService historyService;
+    public static RuntimeService runtimeService;
+
     @Autowired
-
-
-    private static ProcessEngine getProcessEngine() {
-        return ProcessEngines.getDefaultProcessEngine();
+    public void setProcessEngine(ProcessEngine processEngine) {
+        ActivitiUtils.processEngine = processEngine;
     }
 
-    private static RepositoryService getRepositoryService() {
-        return getProcessEngine().getRepositoryService();
+    @Autowired
+    public void setRepositoryService(RepositoryService repositoryService) {
+        ActivitiUtils.repositoryService = repositoryService;
     }
 
-    private static TaskService getTaskService() {
-        return getProcessEngine().getTaskService();
+    @Autowired
+    public void setTaskService(TaskService taskService) {
+        ActivitiUtils.taskService = taskService;
     }
 
-    private static RuntimeService getRuntimeService() {
-        return getProcessEngine().getRuntimeService();
+    @Autowired
+    public void setIdentityService(IdentityService identityService) {
+        ActivitiUtils.identityService = identityService;
     }
 
-    private static HistoryService getHistoryService() {
-        return getProcessEngine().getHistoryService();
+    @Autowired
+    public void setHistoryService(HistoryService historyService) {
+        ActivitiUtils.historyService = historyService;
     }
 
-    private static IdentityService getIdentityService(){
-        return getProcessEngine().getIdentityService();
+    @Autowired
+    public void setRuntimeService(RuntimeService runtimeService) {
+        ActivitiUtils.runtimeService = runtimeService;
     }
 }
