@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
 //            String user = request.getSession().getAttribute(SESSION_KEY).toString();
             if (request.getSession().getAttribute(SESSION_KEY)==null)  {
                 response.sendRedirect("/login");
-                logger.info("请先登录");
+                logger.info("请先登录!");
                 return false;
             }
             logger.info(request.getSession().getAttribute(SESSION_KEY).toString());
