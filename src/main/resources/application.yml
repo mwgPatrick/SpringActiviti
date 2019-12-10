@@ -9,5 +9,15 @@ spring:
   activiti:
     database-schema-update: true
     history-level: audit
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
 #logging:
 #  level: info
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
