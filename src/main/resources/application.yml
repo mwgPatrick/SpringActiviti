@@ -9,6 +9,7 @@ spring:
   activiti:
     database-schema-update: true
     history-level: audit
+    process-definition-location-prefix: classpath:/processes/
   thymeleaf:
     mode: HTML
     cache: false
