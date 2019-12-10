@@ -11,9 +11,11 @@ spring:
     history-level: audit
   thymeleaf:
     mode: HTML
-    encoding: utf-8
-    # 禁用缓存
     cache: false
+    encoding: UTF-8
+#    prefix: classpath:templates/
+#  mvc:
+#    static-path-pattern: /static/**
 #logging:
 #  level: info
 pagehelper:

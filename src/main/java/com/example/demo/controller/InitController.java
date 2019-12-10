@@ -23,4 +23,9 @@ public class InitController {
         userService.initUsersAndGroups();
         return "ok";
     }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
 }

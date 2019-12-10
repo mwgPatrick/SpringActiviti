@@ -1,6 +1,7 @@
 package com.example.demo.util;
 
 import org.activiti.engine.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * ActivitiUtils
@@ -9,6 +10,9 @@ import org.activiti.engine.*;
  * @date 2019/12/10 10:02
  */
 public class ActivitiUtils {
+    @Autowired
+
+
     private static ProcessEngine getProcessEngine() {
         return ProcessEngines.getDefaultProcessEngine();
     }
