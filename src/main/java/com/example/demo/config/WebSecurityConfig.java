@@ -8,12 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * WebSecurityConfig
@@ -22,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @date 2019/12/10 14:10
  */
 @Configuration
-public class WebSecurityConfig extends WebMvcConfigurerAdapter {
+public class WebSecurityConfig implements WebMvcConfigurer {
 
     private Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
     /**
@@ -54,21 +53,21 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
 //            String user = request.getSession().getAttribute(SESSION_KEY).toString();
             if (request.getSession().getAttribute(SESSION_KEY)==null)  {
                 response.sendRedirect("/login");
-                logger.info("请先登录!");
+                logger.info("请登录后使用!");
                 return false;
             }
-            logger.info(request.getSession().getAttribute(SESSION_KEY).toString());
+            logger.info("当前登录用户：{}", request.getSession().getAttribute(SESSION_KEY).toString());
             return true;
         }
 
         @Override
         public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-            logger.info("postHandle...");
+//            logger.info("postHandle...");
         }
 
         @Override
         public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-            logger.info("afterCompletion...");
+//            logger.info("afterCompletion...");
         }
 //        @Override
 //        public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

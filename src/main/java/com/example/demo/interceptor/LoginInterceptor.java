@@ -1,7 +1,6 @@
 package com.example.demo.interceptor;
 
 import com.example.demo.config.WebSecurityConfig;
-import org.activiti.engine.identity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,10 +22,10 @@ public class LoginInterceptor implements HandlerInterceptor {
                              HttpServletResponse response, Object handler) throws Exception {
 
         String user = request.getSession().getAttribute(WebSecurityConfig.SESSION_KEY).toString();
-        logger.info(request.getRequestURI().toString());
-        if (user == null || user.equals(""))  {
+        logger.info(request.getRequestURI());
+        if (user == null || "".equals(user))  {
             response.sendRedirect("/login");
-            logger.info("请先登录");
+            logger.info("请登录后使用。");
             return false;
         }
         return true;
@@ -34,11 +33,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        logger.info("postHandle...");
+//        logger.info("postHandle...");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        logger.info("afterCompletion...");
+//        logger.info("afterCompletion...");
     }
 }
