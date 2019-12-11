@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.WebSecurityConfig;
 import com.example.demo.service.ProcessService;
 import com.example.demo.util.ActivitiUtils;
 import org.activiti.engine.ProcessEngine;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +41,7 @@ public class ProcessController {
     @ResponseBody
     @RequestMapping("/start")
     public String startTask(){
-        ProcessInstance p = ActivitiUtils.runtimeService.startProcessInstanceById("demo1");
+        ProcessInstance p = ActivitiUtils.runtimeService.startProcessInstanceByKey("demo1");
         return p.getProcessDefinitionKey();
     }
 
@@ -46,6 +49,19 @@ public class ProcessController {
     @RequestMapping("/count")
     public String count(){
         List<Task> list = ActivitiUtils.taskService.createTaskQuery().list();
-        return String.valueOf(list.size());
+        List<String> a = new ArrayList<>();
+        list.stream().forEach(l -> a.add(l.getName()));
+//        return String.valueOf(list.size());
+        return a.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping("/todo")
+    public String next(HttpSession session){
+        String userId = session.getAttribute(WebSecurityConfig.SESSION_KEY)==null?"":session.getAttribute(WebSecurityConfig.SESSION_KEY).toString();
+        List<Task> list = ActivitiUtils.taskService.createTaskQuery().taskCandidateOrAssigned(userId).list();
+        List<String> result = new ArrayList<>();
+        list.stream().forEach(l -> result.add(l.getName()));
+        return result.toString();
     }
 }

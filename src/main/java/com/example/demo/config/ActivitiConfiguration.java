@@ -41,8 +41,6 @@ public class ActivitiConfiguration {
 
         spec.setTransactionManager(platformTransactionManager);
 
-        spec.setDatabaseSchemaUpdate("true");
-
         Resource[] resources = null;
 
 // 启动自动部署流程
