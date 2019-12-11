@@ -2,9 +2,11 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
   <process id="demo1" name="demo1" isExecutable="true">
     <documentation>this is a new demo</documentation>
-    <userTask id="sid-89661BE4-E650-45C2-82B9-D3B60BA17921" name="委办局处置" activiti:assignee="$INITIATOR">
+    <userTask id="sid-89661BE4-E650-45C2-82B9-D3B60BA17921" name="委办局处置" activiti:candidateGroups="powerboard">
       <extensionElements>
-        <modeler:activiti-idm-initiator xmlns:modeler="http://activiti.com/modeler"><![CDATA[true]]></modeler:activiti-idm-initiator>
+        <modeler:group-info-name-powerboard xmlns:modeler="http://activiti.com/modeler"><![CDATA[委办局]]></modeler:group-info-name-powerboard>
+        <modeler:activiti-idm-candidate-group xmlns:modeler="http://activiti.com/modeler"><![CDATA[true]]></modeler:activiti-idm-candidate-group>
+        <modeler:initiator-can-complete xmlns:modeler="http://activiti.com/modeler"><![CDATA[false]]></modeler:initiator-can-complete>
       </extensionElements>
     </userTask>
     <parallelGateway id="sid-E788C05E-C598-472B-84AF-4F48FCA66E57"></parallelGateway>
